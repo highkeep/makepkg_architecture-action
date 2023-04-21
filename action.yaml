@@ -1,0 +1,31 @@
+name: Architecture matcher
+author: Nick Marshall
+description: Matches build packages based on inputs.
+branding:
+  color: blue
+  icon: chevron-up
+inputs:
+  architecture:
+    description: "Generic, alderlake, haswell etc."
+    required: true
+    default: ""
+  confDir:
+    description: "Locations of configs"
+    required: true
+    default: ""
+  pkg:
+    description: "Location of PKGBUILD (if updating)"
+    required: false
+    default: ""
+  updatePkg:
+    description: "Whether or not to also update the PKGBUILD"
+    required: false
+    default: false
+outputs:
+  pacmanConf:
+    description: "Path to configuration file for pacman."
+  makepkgConf:
+    description: "Path to configuration file for makepkg."
+runs:
+  using: 'docker'
+  image: 'Dockerfile'   
