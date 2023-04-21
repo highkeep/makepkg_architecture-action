@@ -14,3 +14,5 @@ chmod -R a+rw .
 echo "${INPUT_ARCHITECTURE}"
 echo "${INPUT_TPLMAKEPKGCONF}"
 echo "${INPUT_TPLPACMANCONF}"
+echo "${INPUT_PKG}"
+echo "${INPUT_UPDATEPKG}"
