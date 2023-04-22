@@ -73,6 +73,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     fi
 
     echo "pacmanConf=${pacmanFile}" >>$GITHUB_OUTPUT
+    echo "repoTag=${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic_x86_64}}" >>$GITHUB_OUTPUT
     echo "repoServer=${INPUT_REPOSERVER:-${ghRepoServer//\//\\/}}" >>$GITHUB_OUTPUT
 fi
 

@@ -50,6 +50,8 @@ outputs:
     description: "Path to configuration file for pacman."
   makepkgConf:
     description: "Path to configuration file for makepkg."
+  repoTag:
+    description: "Tag used in pacman repo configuration."
   repoServer:
     description: "Server used as target repository."
 runs:
