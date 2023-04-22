@@ -17,7 +17,7 @@ inputs:
     description: "Template used for makepkg."
     required: false
     default: ""
-  confDir:
+  confOutDir:
     description: "Location of temporary configuration directory"
     required: false
     default: ""

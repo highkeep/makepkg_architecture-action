@@ -29,11 +29,11 @@ function setTargetCpu() {
 }
 
 # Setup output directory
-${sudoCMD} mkdir "${INPUT_CONFDIR:-tmpConf}"
+${sudoCMD} mkdir "${INPUT_CONFOUTDIR:-tmpConf}"
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
-    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
+    makepkgFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
     ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
@@ -54,7 +54,7 @@ fi
 
 # Work on pacman config
 if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
-    pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
+    pacmanFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
