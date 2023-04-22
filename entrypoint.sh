@@ -33,7 +33,7 @@ ${sudoCMD} mkdir "${INPUT_CONFDIR:-tmpConf}"
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
-    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE}_makepkg.conf"
+    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-'generic'}_makepkg.conf"
 
     # Copy makepkg template to output directory
     ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
@@ -54,19 +54,20 @@ fi
 
 # Work on pacman config
 if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
-    set -x
-    pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE}_pacman.conf"
+    pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-'generic'}_pacman.conf"
 
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
+    # Swap out repo tag key
     if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
+        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-'generic'}}/g" ${pacmanFile}
     fi
 
     # Assume pacman will be using the gh release repo
-    ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}"
+    ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-'generic'}}"
 
+    # Swap out repo server key
     if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
         ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer//\//\\/}}/g" ${pacmanFile}
     fi
