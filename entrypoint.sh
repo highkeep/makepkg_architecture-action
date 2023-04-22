@@ -33,16 +33,16 @@ ${sudoCMD} mkdir "${INPUT_CONFDIR:-tmpConf}"
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
-    makepkgFile="${INPUT_CONFDIR:-tmpConf}${INPUT_ARCHITECTURE}_makepkg.conf"
+    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE}_makepkg.conf"
 
     # Copy makepkg template to output directory
     ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
 
     # Update makepkg to use correct architecture
     if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
-        setmarch "x86-64" ${makepkgFile}
-        setmtune "generic" ${makepkgFile}
-        settargetcpu "x86-64" ${makepkgFile}
+        setMarch "x86-64" ${makepkgFile}
+        setMtune "generic" ${makepkgFile}
+        setTargetcpu "x86-64" ${makepkgFile}
     else
         setmarch "${INPUT_ARCHITECTURE}" ${makepkgFile}
         setmtune "${INPUT_ARCHITECTURE}" ${makepkgFile}
