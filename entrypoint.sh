@@ -61,16 +61,16 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     # Swap out repo tag key
-    if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic}}/g" ${pacmanFile}
+    if [ -n "${INPUT_REPOTAGKEY:-REPOTAGKEY}" ]; then
+        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-REPOTAGKEY}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic}}/g" ${pacmanFile}
     fi
 
     # Assume pacman will be using the gh release repo
     ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic}}"
 
     # Swap out repo server key
-    if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer//\//\\/}}/g" ${pacmanFile}
+    if [ -n "${INPUT_REPOSERVERKEY:-REPOSERVERKEY}" ]; then
+        ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-REPOSERVERKEY}/${INPUT_REPOSERVER:-${ghRepoServer//\//\\/}}/g" ${pacmanFile}
     fi
 
     echo "pacmanConf=${pacmanFile}" >>$GITHUB_OUTPUT
