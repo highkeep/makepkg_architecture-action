@@ -1,6 +1,17 @@
 #!/bin/bash
 set -euo pipefail
 
+# Sanity Checks
+if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
+    [ -f "${INPUT_TPLMAKEPKGCONF}" ] || exit 1
+fi
+
+if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
+    [ -f "${INPUT_TPLPACMANCONF}" ] || exit 1
+fi
+
+##################################################
+
 # Install required packages
 pacman -Syu --noconfirm --needed sudo
 
