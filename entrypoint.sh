@@ -70,6 +70,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     echo "pacmanConf=${pacmanFile}" >>$GITHUB_OUTPUT
 fi
 
+# Work on package PKGBUILD
 if [[ "${INPUT_UPDATEPKG:-false}" == true ]]; then
     if [ -n "${INPUT_PKG:-}" ]; then
         if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
