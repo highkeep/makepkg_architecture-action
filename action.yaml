@@ -7,7 +7,7 @@ branding:
 inputs:
   architecture:
     description: "alderlake, haswell etc."
-    required: true
+    required: false
     default: ""
   tplPacmanConf:
     description: "Template used for pacman."
@@ -15,7 +15,7 @@ inputs:
     default: ""
   tplMakepkgConf:
     description: "Template used for makepkg."
-    required: true
+    required: false
     default: ""
   confDir:
     description: "Location of temporary configuration directory"
