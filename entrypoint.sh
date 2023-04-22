@@ -59,7 +59,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
-    if [ -n "${INPUT_REPOTAGKEY:-}"]; then
+    if [ -n "${INPUT_REPOTAGKEY:-}" ]; then
         ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
     fi
 
