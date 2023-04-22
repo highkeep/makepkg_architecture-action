@@ -60,6 +60,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
+        set -x
         ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
     fi
 
