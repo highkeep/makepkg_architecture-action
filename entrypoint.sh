@@ -14,6 +14,7 @@ echo "builder ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 # Give all users (particularly builder) full access to these files
 chmod -R a+rw .
 
+# Set up sudo cmd to make like a little easier
 sudoCMD="sudo -u builder"
 
 function setMarch() {
