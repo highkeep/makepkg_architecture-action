@@ -42,11 +42,11 @@ if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
     if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
         setMarch "x86-64" ${makepkgFile}
         setMtune "generic" ${makepkgFile}
-        setTargetcpu "x86-64" ${makepkgFile}
+        setTargetCpu "x86-64" ${makepkgFile}
     else
         setMarch "${INPUT_ARCHITECTURE}" ${makepkgFile}
         setMtune "${INPUT_ARCHITECTURE}" ${makepkgFile}
-        setTargetcpu "${INPUT_ARCHITECTURE}" ${makepkgFile}
+        setTargetCpu "${INPUT_ARCHITECTURE}" ${makepkgFile}
     fi
 
     echo "makepkgConf=${makepkgFile}" >>$GITHUB_OUTPUT
@@ -77,13 +77,13 @@ fi
 if [[ "${INPUT_UPDATEPKG:-false}" == true ]]; then
     if [ -n "${INPUT_PKG:-}" ]; then
         if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
-            setmarch "x86-64" ${INPUT_PKG}/PKGBUILD
-            setmtune "generic" ${INPUT_PKG}/PKGBUILD
-            settargetcpu "x86-64" ${INPUT_PKG}/PKGBUILD
+            setMarch "x86-64" ${INPUT_PKG}/PKGBUILD
+            setMtune "generic" ${INPUT_PKG}/PKGBUILD
+            setTargetCpu "x86-64" ${INPUT_PKG}/PKGBUILD
         else
-            setmarch "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
-            setmtune "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
-            settargetcpu "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
+            setMarch "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
+            setMtune "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
+            setTargetCpu "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
         fi
     fi
 fi
