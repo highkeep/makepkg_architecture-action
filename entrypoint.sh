@@ -44,9 +44,9 @@ if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
         setMtune "generic" ${makepkgFile}
         setTargetcpu "x86-64" ${makepkgFile}
     else
-        setmarch "${INPUT_ARCHITECTURE}" ${makepkgFile}
-        setmtune "${INPUT_ARCHITECTURE}" ${makepkgFile}
-        settargetcpu "${INPUT_ARCHITECTURE}" ${makepkgFile}
+        setMarch "${INPUT_ARCHITECTURE}" ${makepkgFile}
+        setMtune "${INPUT_ARCHITECTURE}" ${makepkgFile}
+        setTargetcpu "${INPUT_ARCHITECTURE}" ${makepkgFile}
     fi
 
     echo "makepkgConf=${makepkgFile}" >>$GITHUB_OUTPUT
