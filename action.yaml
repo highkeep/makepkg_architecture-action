@@ -28,7 +28,7 @@ inputs:
   repoTagKey:
     description: "Key to set repository name. (for pacman creation)"
     required: false
-    default: "REPOKEY"
+    default: "REPOTAGKEY"
   repoServer:
     description: "Server to use as repository server. (for pacman creation)"
     required: false
