@@ -4,8 +4,7 @@ set -euo pipefail
 # Install required packages
 pacman -Syu --noconfirm --needed sudo
 
-# Added builder as seen in edlanglois/pkgbuild-action
-# mainly for permissions
+# Added builder as seen in edlanglois/pkgbuild-action - mainly for permissions
 useradd builder -m
 # When installing dependencies, makepkg will use sudo
 # Give user `builder` passwordless sudo access
