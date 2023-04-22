@@ -65,7 +65,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     fi
 
     # Assume pacman will be using the gh release repo
-    ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-}"
+    ghRepoServer="$GITHUB_SERVER_URL\/$GITHUB_REPOSITORY\/releases\/download\/${INPUT_REPOTAG:-}"
 
     if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
         ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer}}/g" ${pacmanFile}
