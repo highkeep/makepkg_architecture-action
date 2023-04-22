@@ -6,15 +6,39 @@ branding:
   icon: chevron-up
 inputs:
   architecture:
-    description: "Generic, alderlake, haswell etc."
+    description: "alderlake, haswell etc."
+    required: true
+    default: ""
+  tplPacmanConf:
+    description: "Template used for pacman."
+    required: false
+    default: ""
+  tplMakepkgConf:
+    description: "Template used for makepkg."
     required: true
     default: ""
   confDir:
-    description: "Locations of configs"
-    required: true
+    description: "Location of temporary configuration directory"
+    required: false
     default: ""
+  repoTag:
+    description: "Tag to use as repository name. (for pacman creation)"
+    required: false
+    default: ""
+  repoTagKey:
+    description: "Key to set repository name. (for pacman creation)"
+    required: false
+    default: "REPOKEY"
+  repoServer:
+    description: "Server to use as repository server. (for pacman creation)"
+    required: false
+    default: ""
+  repoServerKey:
+    description: "Key to set repository server. (for pacman creation)"
+    required: false
+    default: "REPOSERVERKEY"
   pkg:
-    description: "Location of PKGBUILD (if updating)"
+    description: "Directory of PKGBUILD (if updating)"
     required: false
     default: ""
   updatePkg:
