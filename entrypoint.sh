@@ -1,11 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# Sanity Checks
-[ -d "${INPUT_TPLDIR:-}" ] || exit 1
-[ -f "${INPUT_TPLDIR:-}/${INPUT_TPLPACMANCONF:-}" ] || exit 1
-[ -f "${INPUT_TPLDIR:-}/${INPUT_TPLMAKEPKGCONF:-}" ] || exit 1
-
 # Install required packages
 pacman -Syu --noconfirm --needed sudo
 
@@ -41,7 +36,7 @@ if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
     makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
-    ${sudoCMD} cp "${INPUT_TPLDIR}/${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
+    ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
 
     # Update makepkg to use correct architecture
     if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
@@ -62,7 +57,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
-    ${sudoCMD} cp "${INPUT_TPLDIR}/${INPUT_TPLPACMANCONF}" ${pacmanFile}
+    ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     # Swap out repo tag key
     if [ -n "${INPUT_REPOTAGKEY:-REPOTAGKEY}" ]; then
