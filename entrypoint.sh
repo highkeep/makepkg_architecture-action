@@ -60,13 +60,13 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
+        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
     fi
 
     # Assume pacman will be using the gh release repo
     ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-}"
 
-    if [ -n "${INPUT_REPOSERVERKEY:-}" ]; then
+    if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
         ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer}}/g" ${pacmanFile}
     fi
 
