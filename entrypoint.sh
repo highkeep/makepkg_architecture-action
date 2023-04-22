@@ -34,13 +34,13 @@ ${sudoCMD} mkdir "${INPUT_CONFDIR:-tmpConf}"
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
-    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-'generic'}_makepkg.conf"
+    makepkgFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
     ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
 
     # Update makepkg to use correct architecture
-    if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
+    if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
         setMarch "x86-64" ${makepkgFile}
         setMtune "generic" ${makepkgFile}
         setTargetCpu "x86-64" ${makepkgFile}
@@ -55,18 +55,18 @@ fi
 
 # Work on pacman config
 if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
-    pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-'generic'}_pacman.conf"
+    pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     # Swap out repo tag key
     if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-'generic'}}/g" ${pacmanFile}
+        ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic}}/g" ${pacmanFile}
     fi
 
     # Assume pacman will be using the gh release repo
-    ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-'generic'}}"
+    ghRepoServer="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE:-generic}}"
 
     # Swap out repo server key
     if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
@@ -79,7 +79,7 @@ fi
 # Work on package PKGBUILD
 if [[ "${INPUT_UPDATEPKG:-false}" == true ]]; then
     if [ -n "${INPUT_PKG:-}" ]; then
-        if [[ "${INPUT_ARCHITECTURE:-'generic'}" == 'generic' ]]; then
+        if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
             setMarch "x86-64" ${INPUT_PKG}/PKGBUILD
             setMtune "generic" ${INPUT_PKG}/PKGBUILD
             setTargetCpu "x86-64" ${INPUT_PKG}/PKGBUILD
