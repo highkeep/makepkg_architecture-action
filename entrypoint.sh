@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# Install required packages
+pacman -Syu --noconfirm --needed sudo
+
 # Added builder as seen in edlanglois/pkgbuild-action
 # mainly for permissions
 useradd builder -m
