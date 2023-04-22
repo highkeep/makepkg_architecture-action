@@ -68,7 +68,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
     ghRepoServer="$GITHUB_SERVER_URL\/$GITHUB_REPOSITORY\/releases\/download\/${INPUT_REPOTAG:-}"
 
     if [ -n "${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}" ]; then
-        ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer}}/g" ${pacmanFile}
+        ${sudoCMD} sed -i "s/${INPUT_REPOSERVERKEY:-'REPOSERVERKEY'}/${INPUT_REPOSERVER:-${ghRepoServer//\//\\/}}/g" ${pacmanFile}
     fi
 
     echo "pacmanConf=${pacmanFile}" >>$GITHUB_OUTPUT
