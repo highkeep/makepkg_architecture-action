@@ -54,13 +54,13 @@ fi
 
 # Work on pacman config
 if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
+    set -x
     pacmanFile="${INPUT_CONFDIR:-tmpConf}/${INPUT_ARCHITECTURE}_pacman.conf"
 
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
 
     if [ -n "${INPUT_REPOTAGKEY:-'REPOTAGKEY'}" ]; then
-        set -x
         ${sudoCMD} sed -i "s/${INPUT_REPOTAGKEY:-'REPOTAGKEY'}/${INPUT_REPOTAG:-${INPUT_ARCHITECTURE}}/g" ${pacmanFile}
     fi
 
