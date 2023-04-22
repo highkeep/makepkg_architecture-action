@@ -9,6 +9,10 @@ inputs:
     description: "alderlake, haswell etc."
     required: false
     default: ""
+  tplDir:
+    description: "Template directory."
+    required: false
+    default: ""
   tplPacmanConf:
     description: "Template used for pacman."
     required: false
