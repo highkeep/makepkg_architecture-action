@@ -40,7 +40,7 @@ if [ -n "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ]; then
     makepkgFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
-    ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF}" ${makepkgFile}
+    ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ${makepkgFile}
 
     # Update makepkg to use correct architecture
     if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
@@ -61,7 +61,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ]; then
     pacmanFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
-    ${sudoCMD} cp "${INPUT_TPLPACMANCONF}" ${pacmanFile}
+    ${sudoCMD} cp "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ${pacmanFile}
 
     # Swap out repo tag key
     if [ -n "${INPUT_REPOTAGKEY:-REPOTAGKEY}" ]; then
