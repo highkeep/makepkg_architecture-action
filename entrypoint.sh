@@ -1,17 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# Sanity Checks
-if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
-    [ -f "${INPUT_TPLMAKEPKGCONF}" ] || exit 1
-fi
-
-if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
-    [ -f "${INPUT_TPLPACMANCONF}" ] || exit 1
-fi
-
-##################################################
-
 # Install required packages
 pacman -Syu --noconfirm --needed sudo
 
@@ -47,7 +36,7 @@ function setTargetCpu() {
 ${sudoCMD} mkdir "${INPUT_CONFOUTDIR:-tmpConf}"
 
 # Work on makepkg config
-if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
+if [ -n "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ]; then
     makepkgFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
@@ -68,7 +57,7 @@ if [ -n "${INPUT_TPLMAKEPKGCONF:-}" ]; then
 fi
 
 # Work on pacman config
-if [ -n "${INPUT_TPLPACMANCONF:-}" ]; then
+if [ -n "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ]; then
     pacmanFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
