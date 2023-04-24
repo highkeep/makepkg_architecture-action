@@ -40,7 +40,6 @@ inputs:
   updatePkgbuild:
     description: "Whether or not to also update the PKGBUILD"
     required: false
-    default: false
   pkg:
     description: "Directory of PKGBUILD (if updating)"
     required: false
@@ -55,5 +54,5 @@ outputs:
   repoServer:
     description: "Server used as target repository."
 runs:
-  using: 'docker'
-  image: 'Dockerfile'   
+  using: "docker"
+  image: "Dockerfile"
