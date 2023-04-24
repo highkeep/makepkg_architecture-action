@@ -86,16 +86,10 @@ if [ -n "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ]; then
 fi
 
 # Work on package PKGBUILD
-if [[ "${INPUT_UPDATEPKGBUILD:-false}" == true ]]; then
+if [[ "${INPUT_UPDATEPKGBUILD:-false}" == true && "${INPUT_ARCHITECTURE:-generic}" != 'generic' ]]; then
     if [ -n "${INPUT_PKG:-}" ]; then
-        if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
-            setMarch "x86-64" ${INPUT_PKG}/PKGBUILD
-            setMtune "generic" ${INPUT_PKG}/PKGBUILD
-            setTargetCpu "x86-64" ${INPUT_PKG}/PKGBUILD
-        else
-            setMarch "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
-            setMtune "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
-            setTargetCpu "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
-        fi
+        setMarch "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
+        setMtune "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
+        setTargetCpu "${INPUT_ARCHITECTURE}" ${INPUT_PKG}/PKGBUILD
     fi
 fi
