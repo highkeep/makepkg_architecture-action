@@ -33,11 +33,15 @@ function setTargetCpu() {
 }
 
 # Setup output directory
-${sudoCMD} mkdir "${INPUT_CONFOUTDIR:-tmpConf}"
+# ${sudoCMD} mkdir "${INPUT_CONFOUTDIR:-tmpConf}"
+
+# Generate names for temp pacman and makepkg files
+makepkgFile=$(mktemp -p . --suffix _makepkg.conf -d)
+pacmanFile=$(mktemp -p . --suffix _pacman.conf -d)
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ]; then
-    makepkgFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
+    # makepkgFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_makepkg.conf"
 
     # Copy makepkg template to output directory
     ${sudoCMD} cp "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ${makepkgFile}
@@ -58,7 +62,7 @@ fi
 
 # Work on pacman config
 if [ -n "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ]; then
-    pacmanFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
+    # pacmanFile="${INPUT_CONFOUTDIR:-tmpConf}/${INPUT_ARCHITECTURE:-generic}_pacman.conf"
 
     # Copy pacman template to output directory
     ${sudoCMD} cp "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ${pacmanFile}
