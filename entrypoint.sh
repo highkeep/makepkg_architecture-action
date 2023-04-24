@@ -36,8 +36,8 @@ function setTargetCpu() {
 # ${sudoCMD} mkdir "${INPUT_CONFOUTDIR:-tmpConf}"
 
 # Generate names for temp pacman and makepkg files
-makepkgFile=$(mktemp -p . --suffix _makepkg.conf -d)
-pacmanFile=$(mktemp -p . --suffix _pacman.conf -d)
+makepkgFile=$(mktemp -p . --suffix _makepkg.conf -u)
+pacmanFile=$(mktemp -p . --suffix _pacman.conf -u)
 
 # Work on makepkg config
 if [ -n "${INPUT_TPLMAKEPKGCONF:-templates/makepkg.conf}" ]; then
