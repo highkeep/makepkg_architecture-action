@@ -86,7 +86,7 @@ if [ -n "${INPUT_TPLPACMANCONF:-templates/pacman.conf}" ]; then
 fi
 
 # Work on package PKGBUILD
-if [[ "${INPUT_UPDATEPKG:-false}" == true ]]; then
+if [[ "${INPUT_UPDATEPKGBUILD:-false}" == true ]]; then
     if [ -n "${INPUT_PKG:-}" ]; then
         if [[ "${INPUT_ARCHITECTURE:-generic}" == 'generic' ]]; then
             setMarch "x86-64" ${INPUT_PKG}/PKGBUILD
